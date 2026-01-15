@@ -21,7 +21,7 @@ Add to your `~/.cursor/mcp.json`:
   "mcpServers": {
     "architectgbt": {
       "command": "npx",
-      "args": ["@architectgbt/mcp"]
+      "args": ["architectgbt-mcp"]
     }
   }
 }
@@ -36,7 +36,7 @@ Add to your Claude Desktop config (`%APPDATA%\Claude\claude_desktop_config.json`
   "mcpServers": {
     "architectgbt": {
       "command": "npx",
-      "args": ["@architectgbt/mcp"]
+      "args": ["architectgbt-mcp"]
     }
   }
 }
@@ -51,7 +51,7 @@ Add to your MCP configuration:
   "mcpServers": {
     "architectgbt": {
       "command": "npx",
-      "args": ["@architectgbt/mcp"]
+      "args": ["architectgbt-mcp"]
     }
   }
 }

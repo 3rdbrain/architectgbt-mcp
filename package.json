@@ -1,5 +1,5 @@
 {
-  "name": "@architectgbt/mcp",
+  "name": "architectgbt-mcp",
   "version": "0.1.0",
   "description": "MCP server for AI model recommendations from ArchitectGBT",
   "type": "module",
