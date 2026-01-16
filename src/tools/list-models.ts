@@ -40,7 +40,18 @@ export async function handleListModels(args: unknown) {
       throw new Error(`API error: ${response.status}`);
     }
 
-    let models = await response.json();
+    const responseData = await response.json();
+    
+    // Handle the API response structure: { success: true, data: [...] }
+    let models = responseData.success && Array.isArray(responseData.data) 
+      ? responseData.data 
+      : Array.isArray(responseData) 
+      ? responseData 
+      : [];
+
+    if (!Array.isArray(models)) {
+      throw new Error(`Expected array but got ${typeof models}. API might have changed.`);
+    }
 
     // Filter by provider if specified
     if (input.provider && input.provider !== "all") {

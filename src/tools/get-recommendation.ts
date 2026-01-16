@@ -5,7 +5,7 @@ const API_BASE = process.env.ARCHITECTGBT_API_URL || "https://architectgbt.com";
 export const getRecommendationTool = {
   name: "get_ai_recommendation",
   description:
-    "Analyze a project description and recommend the best AI model with pricing, reasoning, and alternatives. Use this when someone asks which AI model to use for their project.",
+    "Analyze a project description and recommend the best AI model with pricing, reasoning, and alternatives. Use this when someone asks which AI model to use for their project. Note: This uses the public ArchitectGBT website - users should visit architectgbt.com and sign up for full API access.",
   inputSchema: {
     type: "object" as const,
     properties: {
@@ -52,6 +52,17 @@ export async function handleGetRecommendation(args: unknown) {
     });
 
     if (!response.ok) {
+      // Handle authentication requirement
+      if (response.status === 401) {
+        return {
+          content: [
+            {
+              type: "text",
+              text: `❌ **Authentication Required**\n\nThe ArchitectGBT API requires authentication. To get AI model recommendations:\n\n1. Visit https://architectgbt.com\n2. Sign up for a free account\n3. Use the website directly for personalized recommendations\n\nAlternatively, you can:\n- Use \`list_models\` to browse available models\n- Use \`get_code_template\` to get integration code for any model\n\nFor your query: "${input.prompt}"\nI recommend visiting the website for a personalized analysis.`,
+            },
+          ],
+        };
+      }
       throw new Error(`API error: ${response.status}`);
     }
 
