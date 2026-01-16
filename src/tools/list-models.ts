@@ -70,7 +70,10 @@ export async function handleListModels(args: unknown) {
     result += `|-------|----------|------------|-------------|\n`;
 
     models.forEach((m: any) => {
-      result += `| ${m.name} | ${m.provider} | $${m.input_price || "?"} | $${m.output_price || "?"} |\n`;
+      // Convert per-1K pricing to per-1M for display
+      const inputPer1M = m.input_cost_per_1k ? (m.input_cost_per_1k * 1000).toFixed(2) : "?";
+      const outputPer1M = m.output_cost_per_1k ? (m.output_cost_per_1k * 1000).toFixed(2) : "?";
+      result += `| ${m.name} | ${m.provider} | $${inputPer1M} | $${outputPer1M} |\n`;
     });
 
     result += `\n*Showing ${models.length} models. Use \`get_ai_recommendation\` for personalized suggestions.*`;

@@ -53,12 +53,12 @@ export async function handleGetRecommendation(args: unknown) {
 
     if (!response.ok) {
       // Handle authentication requirement
-      if (response.status === 401) {
+      if (response.status === 401 || response.status === 405) {
         return {
           content: [
             {
               type: "text",
-              text: `❌ **Authentication Required**\n\nThe ArchitectGBT API requires authentication. To get AI model recommendations:\n\n1. Visit https://architectgbt.com\n2. Sign up for a free account\n3. Use the website directly for personalized recommendations\n\nAlternatively, you can:\n- Use \`list_models\` to browse available models\n- Use \`get_code_template\` to get integration code for any model\n\nFor your query: "${input.prompt}"\nI recommend visiting the website for a personalized analysis.`,
+              text: `❌ **Authentication Required**\n\nThe ArchitectGBT API requires authentication. To get AI model recommendations:\n\n1. Visit https://architectgbt.com\n2. Sign up for a free account (free tier available!)\n3. Use the website directly for personalized recommendations\n\nAlternatively, you can:\n- Use \`list_models\` to browse available models\n- Use \`get_code_template\` to get integration code for any model\n\nFor your query: "${input.prompt}"\nI recommend visiting the website for a personalized analysis with cost estimates and reasoning.`,
             },
           ],
         };
