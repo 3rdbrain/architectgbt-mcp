@@ -1,31 +1,44 @@
 {
   "name": "architectgbt-mcp",
-  "version": "0.2.0",
-  "description": "MCP server for AI model recommendations from ArchitectGBT",
+  "version": "0.2.4",
+  "description": "Model Context Protocol server for ArchitectGBT - AI architecture recommendations",
   "type": "module",
-  "main": "dist/index.js",
   "bin": {
     "architectgbt-mcp": "./dist/index.js"
   },
+  "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
+    "build": "tsc && node -e \"require('fs').chmodSync('./dist/index.js', '755')\"",
+    "prepare": "npm run build",
+    "dev": "tsx src/index.ts",
+    "test": "echo 'No tests yet'"
   },
-  "keywords": ["mcp", "ai", "model", "recommendation", "architectgbt", "cursor", "claude"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "architecture",
+    "recommendations",
+    "openai",
+    "anthropic",
+    "claude"
+  ],
   "author": "ArchitectGBT",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/architectgbt-mcp.git"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "zod": "^3.22.0"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
   },
-  "files": ["dist"],
   "engines": {
-    "node": ">=18"
+    "node": ">=18.0.0"
   }
 }

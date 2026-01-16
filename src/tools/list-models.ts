@@ -16,7 +16,7 @@ export const listModelsTool = {
       },
       limit: {
         type: "number",
-        description: "Maximum number of models to return (default: 10)",
+        description: "Maximum number of models to return (default: 50)",
       },
     },
     required: [],
@@ -27,7 +27,7 @@ const InputSchema = z.object({
   provider: z
     .enum(["OpenAI", "Anthropic", "Google", "Meta", "Mistral", "all"])
     .optional(),
-  limit: z.number().default(10),
+  limit: z.number().default(50),
 });
 
 export async function handleListModels(args: unknown) {
@@ -64,19 +64,32 @@ export async function handleListModels(args: unknown) {
     // Limit results
     models = models.slice(0, input.limit);
 
-    // Format output
-    let result = `## 📊 Available AI Models\n\n`;
-    result += `| Model | Provider | Input $/1M | Output $/1M |\n`;
-    result += `|-------|----------|------------|-------------|\n`;
-
+    // Group by provider for better readability
+    const groupedModels: Record<string, any[]> = {};
     models.forEach((m: any) => {
-      // Convert per-1K pricing to per-1M for display
-      const inputPer1M = m.input_cost_per_1k ? (m.input_cost_per_1k * 1000).toFixed(2) : "?";
-      const outputPer1M = m.output_cost_per_1k ? (m.output_cost_per_1k * 1000).toFixed(2) : "?";
-      result += `| ${m.name} | ${m.provider} | $${inputPer1M} | $${outputPer1M} |\n`;
+      const provider = m.provider || "Unknown";
+      if (!groupedModels[provider]) {
+        groupedModels[provider] = [];
+      }
+      groupedModels[provider].push(m);
     });
 
-    result += `\n*Showing ${models.length} models. Use \`get_ai_recommendation\` for personalized suggestions.*`;
+    // Format output with grouping
+    let result = `Available AI Models (${models.length} total)\n`;
+    result += `${"=".repeat(70)}\n\n`;
+
+    Object.entries(groupedModels).forEach(([provider, providerModels]) => {
+      result += `${provider}:\n`;
+      providerModels.forEach((m: any) => {
+        const inputPer1M = m.input_cost_per_1k ? (m.input_cost_per_1k * 1000).toFixed(2) : "?";
+        const outputPer1M = m.output_cost_per_1k ? (m.output_cost_per_1k * 1000).toFixed(2) : "?";
+        result += `  • ${m.name.padEnd(30)} $${inputPer1M.padStart(6)} / $${outputPer1M.padStart(6)} (in/out per 1M tokens)\n`;
+      });
+      result += `\n`;
+    });
+
+    result += `${"=".repeat(70)}\n`;
+    result += `💡 Tip: Use get_ai_recommendation for personalized model suggestions based on your needs.`;
 
     return {
       content: [{ type: "text", text: result }],

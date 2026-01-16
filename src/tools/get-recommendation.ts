@@ -126,36 +126,100 @@ export async function handleGetRecommendation(args: unknown) {
 }
 
 function formatRecommendation(data: any): string {
-  const { recommendation, reasoning, alternatives, model } = data;
-
-  let result = `## 🎯 AI Model Recommendation\n\n`;
-
-  if (model) {
-    result += `### Recommended: ${model.name}\n`;
-    result += `- **Provider:** ${model.provider}\n`;
-    result += `- **Model ID:** ${model.model_id || "N/A"}\n`;
-
-    if (model.input_price || model.output_price) {
-      result += `- **Pricing:** $${model.input_price}/1M input, $${model.output_price}/1M output\n`;
+  // Handle conversational/off-topic responses
+  if (data.off_topic || data.needs_clarification) {
+    let result = data.message || '';
+    
+    if (data.questions && Array.isArray(data.questions) && data.questions.length > 0) {
+      result += `\n\n📋 To help me recommend the perfect AI model, please tell me:\n`;
+      data.questions.forEach((q: string, i: number) => {
+        result += `${i + 1}. ${q}\n`;
+      });
     }
+    
+    return result;
+  }
 
-    if (model.context_window) {
-      result += `- **Context Window:** ${model.context_window.toLocaleString()} tokens\n`;
+  const recommendations = data.recommendations || [];
+  
+  if (recommendations.length === 0) {
+    return `❌ No recommendations found. Try describing your project in more detail.`;
+  }
+
+  let result = `🎯 AI Model Recommendation — Analysis Complete!\n`;
+  result += `${"=".repeat(70)}\n\n`;
+
+  // Main recommendation
+  const top = recommendations[0];
+  result += `✨ TOP MATCH (${top.match_score || top.score || 95}% match)\n\n`;
+  result += `${top.model_name || top.name}\n`;
+  result += `Provider: ${top.provider}\n`;
+  
+  // Pricing
+  if (top.estimated_cost) {
+    const cost = top.estimated_cost;
+    result += `Estimated Cost: $${cost.total_cost_usd?.toFixed(4) || '0.0000'}\n`;
+    result += `  └─ ${cost.input_tokens?.toLocaleString() || '0'} input + ${cost.output_tokens?.toLocaleString() || '0'} output tokens\n`;
+  } else if (top.input_price !== undefined && top.output_price !== undefined) {
+    result += `Pricing: $${top.input_price}/1M input • $${top.output_price}/1M output\n`;
+  }
+
+  // Capabilities
+  if (top.capabilities?.context_window || top.context_window) {
+    const contextWindow = top.capabilities?.context_window || top.context_window;
+    result += `Context Window: ${contextWindow.toLocaleString()} tokens\n`;
+  }
+
+  // Reasoning
+  if (top.reasoning) {
+    result += `\n💡 Why this model?\n${top.reasoning}\n`;
+  }
+
+  // Pros and Cons
+  if (top.pros || top.cons) {
+    result += `\n`;
+    if (top.pros && top.pros.length > 0) {
+      result += `✅ Pros:\n`;
+      top.pros.forEach((pro: string) => {
+        result += `  • ${pro}\n`;
+      });
+    }
+    if (top.cons && top.cons.length > 0) {
+      result += `⚠️  Cons:\n`;
+      top.cons.forEach((con: string) => {
+        result += `  • ${con}\n`;
+      });
     }
   }
 
-  if (reasoning) {
-    result += `\n### Why This Model?\n${reasoning}\n`;
-  }
-
-  if (alternatives && alternatives.length > 0) {
-    result += `\n### Alternatives\n`;
-    alternatives.forEach((alt: any, i: number) => {
-      result += `${i + 1}. **${alt.name}** - ${alt.reason || alt.description || ""}\n`;
+  // Alternative recommendations
+  if (recommendations.length > 1) {
+    result += `\n${"─".repeat(70)}\n`;
+    result += `\nAlternative Options:\n\n`;
+    
+    recommendations.slice(1, 3).forEach((rec: any, i: number) => {
+      result += `${i + 2}. ${rec.model_name || rec.name} (${rec.match_score || rec.score || '??'}% match)\n`;
+      result += `   Provider: ${rec.provider}\n`;
+      if (rec.estimated_cost) {
+        result += `   Cost: $${rec.estimated_cost.total_cost_usd?.toFixed(4) || '0.0000'}\n`;
+      } else if (rec.input_price !== undefined) {
+        result += `   Pricing: $${rec.input_price}/1M in • $${rec.output_price}/1M out\n`;
+      }
+      if (rec.reasoning) {
+        result += `   Reason: ${rec.reasoning.substring(0, 150)}${rec.reasoning.length > 150 ? '...' : ''}\n`;
+      }
+      result += `\n`;
     });
   }
 
-  result += `\n---\n*Powered by [ArchitectGBT](https://architectgbt.com)*`;
+  // Analysis summary
+  if (data.analysis_summary) {
+    result += `${"─".repeat(70)}\n`;
+    result += `\n📊 Analysis Summary:\n${data.analysis_summary}\n\n`;
+  }
+
+  result += `${"=".repeat(70)}\n`;
+  result += `💎 Powered by ArchitectGBT • https://architectgbt.com`;
 
   return result;
 }
