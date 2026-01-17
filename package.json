@@ -1,7 +1,7 @@
 {
   "name": "architectgbt-mcp",
-  "version": "0.2.4",
-  "description": "Model Context Protocol server for ArchitectGBT - AI architecture recommendations",
+  "version": "0.3.0",
+  "description": "Model Context Protocol server for ArchitectGBT - AI model recommendations with zero-friction onboarding",
   "type": "module",
   "bin": {
     "architectgbt-mcp": "./dist/index.js"

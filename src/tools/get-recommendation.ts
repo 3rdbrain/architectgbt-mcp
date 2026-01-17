@@ -41,7 +41,7 @@ export async function handleGetRecommendation(args: unknown) {
 
   try {
     // Determine which endpoint to use
-    const endpoint = API_KEY ? `${API_BASE}/api/recommend` : `${API_BASE}/api/recommend/public`;
+    const endpoint = API_KEY ? `${API_BASE}/api/recommend` : `${API_BASE}/api/recommend/anonymous`;
     
     // Build headers
     const headers: HeadersInit = {

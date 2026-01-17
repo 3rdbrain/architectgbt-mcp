@@ -2,56 +2,96 @@
 
 ## Quick Test Guide
 
-### 1. Set Your API Key
+### Option 1: Test Anonymous (No Setup)
 
-**Windows (PowerShell):**
-```powershell
-$env:ARCHITECTGBT_API_KEY = "your_api_key_here"
-```
+**Easiest way** - works immediately:
 
-**macOS/Linux:**
-```bash
-export ARCHITECTGBT_API_KEY=your_api_key_here
-```
-
-### 2. Configure Cursor IDE
-
-Create or edit `.cursor/mcp.json` in your project:
+1. **Configure Cursor IDE** - Create `.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "architectgbt": {
       "command": "npx",
-      "args": ["-y", "architectgbt-mcp@0.2.0"]
+      "args": ["-y", "architectgbt-mcp@latest"]
     }
   }
 }
 ```
 
-### 3. Restart Cursor
+2. **Restart Cursor**
 
-Close and reopen Cursor IDE to load the MCP server with your API key.
+3. **Test it** - Ask Claude:
+   - "Show me all available AI models"
+   - "Recommend an AI model for a chatbot"
 
-### 4. Test Commands
+✅ **Expected:** Works instantly - 3 free recommendations/day
 
-#### Test 1: List Models
+---
+
+### Option 2: Test with Pro (Unlimited)
+
+**For unlimited access** - requires Pro account:
+
+1. **Upgrade to Pro:** [architectgbt.com/pricing](https://architectgbt.com/pricing)
+
+2. **Get API Key:** [architectgbt.com/dashboard/settings](https://architectgbt.com/dashboard/settings)
+
+3. **Set Environment Variable:**
+
+**Windows (PowerShell):**
+```powershell
+$env:ARCHITECTGBT_API_KEY = "agbt_your_key_here"
+```
+
+**macOS/Linux:**
+```bash
+export ARCHITECTGBT_API_KEY=agbt_your_key_here
+```
+
+4. **Configure Cursor** - Edit `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "architectgbt": {
+      "command": "npx",
+      "args": ["-y", "architectgbt-mcp@latest"],
+      "env": {
+        "ARCHITECTGBT_API_KEY": "agbt_your_key_here"
+      }
+    }
+  }
+}
+```
+
+5. **Restart Cursor**
+
+6. **Test it** - Ask Claude same questions as above
+
+✅ **Expected:** Unlimited recommendations, no daily limits
+
+---
+
+## Test Commands
+
+### Test 1: List Models
 Ask Claude in Cursor:
 ```
 Show me all available AI models
 ```
 
-Expected: List of models with pricing
+Expected: List of 50+ models with pricing
 
-#### Test 2: Get Recommendation
+### Test 2: Get Recommendation
 Ask Claude:
 ```
 Recommend an AI model for building a chatbot with 100k daily users and $500/month budget
 ```
 
-Expected: Top 3 model recommendations with cost breakdown
+Expected: Top recommendations with cost breakdown
 
-#### Test 3: Get Template
+### Test 3: Get Template
 Ask Claude:
 ```
 Show me the Next.js SaaS template
@@ -59,24 +99,66 @@ Show me the Next.js SaaS template
 
 Expected: Template code and description
 
-### 5. Verify Unlimited Access
+---
 
-With your API key set:
-- ✅ No rate limits (unlimited recommendations)
-- ✅ Usage tracked in your dashboard
-- ✅ `last_used_at` updates in Settings → API Keys
+## Verify Access Level
 
-### 6. Test Without API Key
+### Anonymous/Free (No API Key)
+- ✅ First 3 requests work
+- ❌ 4th request shows rate limit error
+- ✅ Resets after 24 hours
+- ✅ No signup required
 
-Remove the environment variable:
+### Pro (With API Key)
+- ✅ Unlimited requests
+- ✅ No rate limits
+- ✅ Usage tracked in dashboard
+---
+
+## Troubleshooting
+
+### Anonymous Not Working
+
+**Common issue:** API key in config but not valid
+
+**Solution:**
+1. Remove the `env` section from `.cursor/mcp.json`
+2. Use just: `"args": ["-y", "architectgbt-mcp@latest"]`
+3. Restart Cursor
+4. ✅ Should work with free tier (3/day)
+
+### API Key Not Working (Pro Users)
+
+1. **Check you've upgraded:**
+   - Free accounts cannot use API keys
+   - [Upgrade to Pro](https://architectgbt.com/pricing)
+
+2. **Verify environment variable:**
+   ```powershell
+   echo $env:ARCHITECTGBT_API_KEY
+   ```
+
+3. **Check format:**
+   - Must start with `agbt_`
+   - Should be 37+ characters long
+
+4. **Regenerate key:**
+   - Go to [Settings](https://architectgbt.com/dashboard/settings)
+   - Generate new key
+   - Update config
+
+### MCP Server Not Loading
+
+**Test directly:**
 ```powershell
-Remove-Item Env:\ARCHITECTGBT_API_KEY
+npx -y architectgbt-mcp@latest
 ```
 
-Restart Cursor and try again:
-- ✅ First 3 requests work (anonymous tier)
-- ✅ 4th request shows rate limit error
-
+**Common fixes:**
+- Ensure Node.js >= 18.0.0
+- Check internet connection
+- Verify JSON syntax in config
+- Restart Cursor after config changes
 ## Troubleshooting
 
 ### API Key Not Working
@@ -90,35 +172,63 @@ Restart Cursor and try again:
    - Must start with `agbt_`
    - Should be 37+ characters long
 
-3. **Check Cursor loaded it:**
-   - Restart Cursor after setting the variable
-   - Check Cursor's MCP logs
+---
 
-### MCP Server Not Found
+## Testing Checklist
 
-```powershell
-# Test MCP server directly
-npx -y architectgbt-mcp@0.2.0
-```
+### Anonymous Tier
+- [ ] Works without signup
+- [ ] Works without API key
+- [ ] First 3 requests succeed
+- [ ] 4th request shows rate limit
+- [ ] Rate limit resets after 24 hours
+- [ ] Error message shows upgrade path
 
-### Still Getting Rate Limited
-
-- Verify API key is in environment variables
-- Check it matches the key in your dashboard
-- Ensure Cursor was restarted after setting the variable
-
-## Production Testing Checklist
-
-- [ ] Anonymous access works (3/day limit)
+### Pro Tier
+- [ ] Requires Pro subscription
 - [ ] API key provides unlimited access
 - [ ] Usage count increments in dashboard
-- [ ] last_used_at updates after each request
-- [ ] Rate limit resets after 24 hours
-- [ ] All 3 tools work (list_models, get_ai_recommendation, get_template)
-- [ ] Error messages are user-friendly
-- [ ] MCP works in both Cursor and Claude Desktop
+- [ ] `last_used_at` updates after requests
+- [ ] All tools work (list_models, get_ai_recommendation, get_template)
+- [ ] No rate limits
 
-## API Endpoints Being Used
+### General
+- [ ] Error messages are user-friendly
+- [ ] Works in Cursor IDE
+- [ ] Works in Claude Desktop
+- [ ] Handles network errors gracefully
+
+---
+
+## API Endpoints Used
+
+### Anonymous (No API Key)
+- **GET** `https://architectgbt.com/api/models` - Public endpoint
+- **POST** `https://architectgbt.com/api/recommend/public` - Rate limited (3/day)
+
+### Pro (With API Key)
+- **GET** `https://architectgbt.com/api/models` - Public endpoint
+- **POST** `https://architectgbt.com/api/recommend` - Unlimited
+
+**Headers sent:**
+```
+Authorization: Bearer agbt_your_key_here
+Content-Type: application/json
+```
+
+---
+
+## Next Steps
+
+### For Free Users
+1. Try anonymous tier (3/day)
+2. Sign up at [architectgbt.com](https://architectgbt.com) for web access (10/month)
+3. [Upgrade to Pro](https://architectgbt.com/pricing) when ready for unlimited
+
+### For Pro Users
+1. Monitor usage in [Settings → API Keys](https://architectgbt.com/dashboard/settings)
+2. Generate multiple keys for different projects (max 5)
+3. Share MCP setup with your team
 
 When using MCP with API key:
 - **GET** `https://architectgbt.com/api/models` - List models

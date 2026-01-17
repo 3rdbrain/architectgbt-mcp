@@ -7,6 +7,18 @@ Get instant AI model recommendations for your projects directly in Cursor IDE or
 [![npm version](https://img.shields.io/npm/v/architectgbt-mcp.svg)](https://www.npmjs.com/package/architectgbt-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Quick Start (No Signup Required!)
+
+**Just run it** - no API key, no signup, no configuration:
+
+```bash
+npx -y architectgbt-mcp
+```
+
+You get **3 free recommendations per day** instantly. Perfect for trying it out!
+
+Want unlimited? [Upgrade to Pro](#pricing) ($15/month) and add an API key.
+
 ## Features
 
 ### 🎯 AI Model Recommendations
@@ -30,9 +42,14 @@ Get instant AI model recommendations for your projects directly in Cursor IDE or
 
 ## Installation
 
-### Cursor IDE
+### Option 1: Anonymous (Free, No Setup)
+
+**Works immediately** - no configuration, no API key, no signup:
+
+#### Cursor IDE
 
 1. Create `.cursor/mcp.json` in your project:
+
 ```json
 {
   "mcpServers": {
@@ -45,17 +62,16 @@ Get instant AI model recommendations for your projects directly in Cursor IDE or
 ```
 
 2. Restart Cursor
+3. Ask Claude: "Recommend an AI model for my chatbot"
+4. ✅ **Works instantly** - 3 free recommendations/day
 
-3. Ask Claude:
-   - "Recommend an AI model for a customer support chatbot"
-   - "Show me all available AI models"
-   - "Give me Claude Sonnet code in TypeScript"
+#### Claude Desktop
 
-### Claude Desktop
+1. **Open config:**
+   - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+   - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+2. **Add this:**
 
 ```json
 {
@@ -68,47 +84,18 @@ Get instant AI model recommendations for your projects directly in Cursor IDE or
 }
 ```
 
-### VS Code (with Continue or other MCP extensions)
+3. Restart Claude Desktop
+4. ✅ **Works instantly** - 3 free recommendations/day
 
-Install an MCP-compatible extension, then add to settings:
+---
 
-```json
-{
-  "mcp.servers": {
-    "architectgbt": {
-      "command": "npx",
-      "args": ["-y", "architectgbt-mcp@latest"]
-    }
-  }
-}
-```
+### Option 2: Pro (Unlimited with API Key)
 
-### Zed Editor
+Want unlimited recommendations? [Upgrade to Pro](https://architectgbt.com/pricing) then:
 
-Add to `~/.config/zed/settings.json`:
+#### Cursor IDE (Pro)
 
-```json
-{
-  "context_servers": {
-    "architectgbt": {
-      "command": "npx",
-      "args": ["-y", "architectgbt-mcp@latest"]
-    }
-  }
-}
-```
-
-### Any MCP-Compatible Client
-
-This server follows the [Model Context Protocol](https://modelcontextprotocol.io) standard and works with any MCP-compatible client. Run it via stdio:
-
-```bash
-npx architectgbt-mcp@latest
-```
-
-### With API Key (Unlimited Access)
-
-Add your API key to any config above:
+1. Create `.cursor/mcp.json`:
 
 ```json
 {
@@ -124,11 +111,101 @@ Add your API key to any config above:
 }
 ```
 
-## Pricing
+2. Get API key from [Settings](https://architectgbt.com/dashboard/settings)
+3. Replace `agbt_your_key_here` with your key
+4. Restart Cursor
+5. ✅ **Unlimited recommendations**
 
-| Tier | Recommendations | Cost | API Key |
-|------|----------------|------|---------|
-| **Free** | 3/day | $0 | Not needed |
+#### Claude Desktop (Pro)
+
+1. **Open config:**
+   - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+   - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+2. **Edit the config:**
+
+```json
+{
+  "mcpServers": {
+    "architectgbt": {
+      "command": "npx",
+      "args": ["-y", "architectgbt-mcp@latest"],
+      "env": {
+        "ARCHITECTGBT_API_KEY": "agbt_your_key_here"
+      }
+    }
+  }
+}
+```
+
+3. Get API key from [Settings](https://architectgbt.com/dashboard/settings)
+4. Replace `agbt_your_key_here` with your key
+5. Restart Claude Desktop
+6. ✅ **Unlimited recommendations**
+
+5. **Test it** - Look for 🔌 icon in bottom right, then ask:
+   - "Show me all available AI models"
+
+### VS Code (with Continue or other MCP extensions)
+
+---
+
+### Other Editors
+
+#### VS Code (with Continue extension)
+
+```json
+{
+  "mcp.servers": {
+    "architectgbt": {
+      "command": "npx",
+      "args": ["-y", "architectgbt-mcp@latest"]
+    }
+  }
+}
+```
+
+**For unlimited:** Add `"env": { "ARCHITECTGBT_API_KEY": "agbt_your_key" }` and [upgrade to Pro](https://architectgbt.com/pricing).
+
+#### Zed Editor
+
+Add to `~/.config/zed/settings.json`:
+
+```json
+{
+  "context_servers": {
+    "architectgbt": {
+      "command": "npx",
+      "args": ["-y", "architectgbt-mcp@latest"]
+    }
+  }
+}
+```
+
+**For unlimited:** Add `"env": { "ARCHITECTGBT_API_KEY": "agbt_your_key" }` and [upgrade to Pro](https://architectgbt.com/pricing).
+```bash
+npx architectgbt-mcp@latest
+```
+MCP Access | Cost | Setup Required |
+|------|-----------|------|---------------|
+| **Anonymous** | 3/day | $0 | None - works instantly |
+| **Free Account** | 3/day + 10/month web | $0 | Signup only (no API key) |
+| **Pro** | Unlimited | $15-29/month | API key required |
+
+### Free Tier
+- ✅ **No signup needed** - works immediately
+- ✅ **3 recommendations/day** via MCP (IP-based)
+- ✅ **No configuration** - just `npx -y architectgbt-mcp`
+- 📈 Perfect for trying it out!
+
+### Pro Tier
+- ✅ **Unlimited recommendations** (MCP + web app)
+- ✅ **API key access** (up to 5 keys)
+- ✅ **Priority support**
+- ✅ **Advanced features**
+- 💳 [$15-29/month →](https://architectgbt.com/pricing)
+
+**Getting the free tier limit?** [Upgrade to Pro](https://architectgbt.com/pricing) for unlimited access.
 | **Pro** | Unlimited | $15/month | Required |
 
 [Get your API key →](https://architectgbt.com/dashboard/settings)
@@ -178,14 +255,31 @@ Perfect for customer support with fast responses, strong reasoning...
   • Extremely fast (sub-second)
   • Cost-effective at scale
   ...
-```
 
-**Parameters:**
-- `prompt` (required): Your project description
-- `budget` (optional): "low" | "medium" | "high" | "unlimited"
-- `priority` (optional): "cost" | "speed" | "quality" | "balanced"
+**Free tier:** You've used 3 free recommendations today.
 
-- `language` (required): "typescript" | "python"
+**Options:**
+1. ✅ Wait for reset (resets every 24 hours)
+2. 📈 [Upgrade to Pro](https://architectgbt.com/pricing) for unlimited access
+
+### "API Key Invalid" (Pro users)
+
+1. Check key starts with `agbt_`
+2. Regenerate from [Settings](https://architectgbt.com/dashboard/settings)
+3. Make sure it's in the `env` section of your config
+4. Verify you're on a Pro plan
+
+### Not Working at All?
+
+**First time user:**
+- ✅ No API key needed for free tier
+- ✅ Remove the `env` section from config if present
+- ✅ Just use: `"args": ["-y", "architectgbt-mcp@latest"]`
+
+**Pro user:**
+- ❌ Check API key is valid
+- ❌ Ensure you've upgraded to Pro at [architectgbt.com/pricing](https://architectgbt.com/pricing)
+- ❌ Free accounts cannot use API keys
 
 ## Environment Variables
 
