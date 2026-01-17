@@ -1,10 +1,12 @@
 import { z } from "zod";
 import { templates } from "../templates/index.js";
 
+const API_KEY = process.env.ARCHITECTGBT_API_KEY;
+
 export const getTemplateTool = {
   name: "get_code_template",
   description:
-    "Get a production-ready code template for integrating a specific AI model. Returns working code with setup instructions.",
+    "Get production-ready code templates for integrating AI models (TypeScript & Python). Pro feature - requires API key. Free users: browse models unlimited, get 3 AI recommendations/day.",
   inputSchema: {
     type: "object" as const,
     properties: {
@@ -30,6 +32,51 @@ const InputSchema = z.object({
 
 export async function handleGetTemplate(args: unknown) {
   const input = InputSchema.parse(args);
+
+  // Check if user has API key (Pro tier)
+  if (!API_KEY) {
+    return {
+      content: [
+        {
+          type: "text",
+          text: `🔒 **Code Templates are a Pro Feature**
+
+Production-ready code templates require an ArchitectGBT Pro subscription.
+
+**What you get with Pro:**
+✅ All 12+ production code templates (TypeScript & Python)
+✅ Unlimited AI recommendations  
+✅ One-click Vercel deploy
+✅ Cost calculator & optimization
+✅ Priority support (24h)
+
+**Upgrade now:** https://architectgbt.com/pricing ($15/month)
+
+**Already Pro?**
+1. Get your API key: https://architectgbt.com/dashboard/settings
+2. Add to your MCP config:
+\`\`\`json
+{
+  "mcpServers": {
+    "architectgbt": {
+      "command": "npx",
+      "args": ["-y", "architectgbt-mcp"],
+      "env": {
+        "ARCHITECTGBT_API_KEY": "agbt_your_key_here"
+      }
+    }
+  }
+}
+\`\`\`
+3. Restart your IDE
+
+**Free tier includes:**
+✅ Browse 50+ AI models (unlimited)
+✅ 3 AI recommendations/day (no signup needed)`,
+        },
+      ],
+    };
+  }
 
   const modelKey = input.model.toLowerCase();
   const lang = input.language;
