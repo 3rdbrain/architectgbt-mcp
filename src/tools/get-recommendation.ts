@@ -6,14 +6,14 @@ const API_KEY = process.env.ARCHITECTGBT_API_KEY;
 export const getRecommendationTool = {
   name: "get_ai_recommendation",
   description:
-    "Analyze a project description and recommend the best AI model with pricing, reasoning, and alternatives. Free tier: 3 recommendations/day. Add ARCHITECTGBT_API_KEY for unlimited access.",
+    "Get AI model recommendations for SOFTWARE PROJECTS ONLY (web apps, APIs, chatbots, AI features, etc.). DO NOT use for physical projects, crafts, or non-software tasks. Analyzes requirements and recommends the best AI model with pricing, reasoning, and alternatives. Free tier: 3 recommendations/day. Add ARCHITECTGBT_API_KEY for unlimited access.",
   inputSchema: {
     type: "object" as const,
     properties: {
       prompt: {
         type: "string",
         description:
-          "Description of what you want to build (e.g., 'customer support chatbot for e-commerce')",
+          "Description of the SOFTWARE project you want to build (e.g., 'customer support chatbot for e-commerce', 'code review AI assistant', 'document analysis API')",
       },
       budget: {
         type: "string",
