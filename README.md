@@ -1,109 +1,114 @@
 # ArchitectGBT MCP Server
 
-> **AI Model Recommendations Directly in Your IDE** — Compare 50+ models, get code templates, and optimize costs without leaving Cursor or Claude Desktop.
+AI model recommendations directly in your IDE. Compare 50+ models, get code templates, and optimize costs without leaving Cursor or Claude Desktop.
 
 **[Try it Free →](https://architectgbt.com)** · **[Get API Key →](https://architectgbt.com/dashboard/settings)** · **[View All Models →](https://architectgbt.com/models)**
+
+**Resources:** [NPM Package](https://www.npmjs.com/package/architectgbt-mcp) · [GitHub Repository](https://github.com/3rdbrain/architectgbt-mcp)
 
 [![npm version](https://img.shields.io/npm/v/architectgbt-mcp.svg)](https://www.npmjs.com/package/architectgbt-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
-## 🚀 Quick Start (Zero Setup!)
+## Quick Start
 
-**Works instantly** — no signup, no API key, no configuration needed:
+No signup, no API key, no configuration needed:
 
 ```bash
 npx -y architectgbt-mcp
 ```
 
-✨ **Get 3 free AI recommendations per day** to try it out!
+Get 3 free AI recommendations per day to try it out.
 
-💎 Want unlimited access + code templates + advanced features? **[Upgrade to Pro →](https://architectgbt.com/pricing)** (starts at $15/mo)
-
----
-
-## Table of Contents
-
-- [What is ArchitectGBT?](#what-is-architectgbt)
-- [Features](#features)
-- [Installation](#installation)
-  - [Cursor IDE (Recommended)](#cursor-ide)
-  - [Claude Desktop](#claude-desktop)
-  - [Other Editors](#other-editors)
-- [Usage Guide](#usage-guide)
-- [Available Tools](#available-tools)
-- [Pricing & Limits](#pricing--limits)
-- [Troubleshooting](#troubleshooting)
-- [Links & Support](#links--support)
+Want unlimited access + code templates + advanced features? **[Upgrade to Pro →](https://architectgbt.com/pricing)** (starts at $15/mo)
 
 ---
 
 ## What is ArchitectGBT?
 
-**ArchitectGBT** is a platform that helps developers choose the right AI model for their projects. Instead of spending hours researching pricing, capabilities, and integration options across OpenAI, Anthropic, Google, Meta, and Mistral, you get:
+Choosing the right AI model shouldn't take hours of research. ArchitectGBT analyzes your project requirements and recommends the best model with actual cost estimates, not marketing fluff.
 
-- 🎯 **AI-powered recommendations** based on your project requirements
-- 💰 **Cost optimization** with realistic usage estimates
-- 📊 **Model comparison** across 50+ models with real-time pricing
-- 💻 **Production-ready code** in TypeScript and Python
-- 🔧 **Direct IDE integration** via Model Context Protocol (MCP)
+Instead of manually comparing pricing tables across OpenAI, Anthropic, Google, Meta, and Mistral, you get:
 
-**This MCP server** brings ArchitectGBT's intelligence directly into your IDE, so you never have to leave your coding flow.
+- AI-powered recommendations based on your project requirements
+- Cost optimization with realistic usage estimates
+- Model comparison across 50+ models with real-time pricing
+- Production-ready code in TypeScript and Python
+- Direct IDE integration via Model Context Protocol (MCP)
 
-👉 **New to ArchitectGBT?** [Explore the full platform →](https://architectgbt.com)
+This MCP server brings ArchitectGBT's intelligence directly into your IDE, so you never have to leave your coding flow.
 
-## ✨ Features
+**New to ArchitectGBT?** [Explore the full platform →](https://architectgbt.com)
+
+---
+
+## Why This vs Cursor's Auto?
+
+Cursor's Auto feature is great for quick model switching, but it doesn't solve the research problem:
+
+**ArchitectGBT solves:**
+1. **Cost planning** - Get realistic estimates before you build, not surprise bills after
+2. **Model discovery** - Find models you didn't know existed (Mistral, Cohere, specialized models)
+3. **Requirements matching** - Match your specific use case (context window needs, latency requirements, budget constraints)
+4. **Production templates** - Get working integration code, not just model names
+
+**When to use Cursor Auto:** Switching between models you already know
+**When to use ArchitectGBT:** Figuring out which model to use in the first place
+
+Think of it as research before execution. ArchitectGBT helps you make the decision, Cursor Auto helps you execute it.
+
+---
+
+## Features
 
 | Feature | Free | Pro |
 |---------|------|-----|
-| **Browse 50+ AI Models** | ✅ Unlimited | ✅ Unlimited |
-| **AI Recommendations** | 3/day | ✅ Unlimited |
-| **Code Templates** | ❌ | ✅ Unlimited |
-| **Cost Calculator** | ❌ | ✅ |
-| **API Keys** | ❌ | ✅ Up to 5 |
-| **Priority Support** | ❌ | ✅ |
+| **Browse 50+ AI Models** | Unlimited | Unlimited |
+| **AI Recommendations** | 3/day | Unlimited |
+| **Code Templates** | No | Unlimited |
+| **Cost Calculator** | No | Yes |
+| **API Keys** | No | Up to 5 |
+| **Priority Support** | No | Yes |
 
-### 🎯 AI Model Recommendations
+### AI Model Recommendations
 Get intelligent, personalized suggestions for your specific use case:
-- 💡 **Smart analysis** with detailed reasoning, pros/cons, and alternatives
-- 💰 **Budget optimization** (low/medium/high/unlimited budgets)
-- ⚡ **Priority matching** (optimize for cost, speed, quality, or balanced)
-- 📊 **Real cost estimates** based on realistic token usage
-- 🔄 **Alternative suggestions** if your top pick doesn't fit
+- Smart analysis with detailed reasoning, pros/cons, and alternatives
+- Budget optimization (low/medium/high/unlimited budgets)
+- Priority matching (optimize for cost, speed, quality, or balanced)
+- Real cost estimates based on realistic token usage
+- Alternative suggestions if your top pick doesn't fit
 
-### 📊 Model Database (Always Free!)
-- **50+ AI models** from OpenAI, Anthropic, Google, Meta, Mistral
-- **Real-time pricing** per 1M tokens (input + output)
-- **Detailed specs** (context windows, speed rankings, capabilities)
-- **Provider filtering** to compare similar models
-- **Always updated** with the latest model releases
+### Model Database (Always Free)
+- 50+ AI models from OpenAI, Anthropic, Google, Meta, Mistral
+- Real-time pricing per 1M tokens (input + output)
+- Detailed specs (context windows, speed rankings, capabilities)
+- Provider filtering to compare similar models
+- Always updated with the latest model releases
 
-### 💻 Code Templates (Pro Only 🔒)
+### Code Templates (Pro Only)
 Production-ready integration code to ship faster:
-- **Copy-paste ready** for Anthropic, OpenAI, Google Gemini
-- **TypeScript & Python** support
-- **Complete examples** with installation, env setup, and error handling
-- **Best practices** including streaming, retries, and rate limiting
-- **Saves hours** of reading API docs
+- Copy-paste ready for Anthropic, OpenAI, Google Gemini
+- TypeScript & Python support
+- Complete examples with installation, env setup, and error handling
+- Best practices including streaming, retries, and rate limiting
+- Saves hours of reading API docs
 
-👉 **[View all features on ArchitectGBT →](https://architectgbt.com)**
-
----
-
-## 📦 Installation
-
-Choose your editor below. **No API key needed to start** — upgrade to Pro later for unlimited access.
+**[View all features on ArchitectGBT →](https://architectgbt.com)**
 
 ---
+
+## Installation
+
+Choose your editor below. No API key needed to start — upgrade to Pro later for unlimited access.
 
 ### Cursor IDE
 
-**Best experience recommended!** Cursor has native MCP support built-in.
+Cursor has native MCP support built-in.
 
 #### Option 1: Free (No API Key)
 
-1. **Create** `.cursor/mcp.json` in your project root:
+1. Create `.cursor/mcp.json` in your project root:
 
 ```json
 {
@@ -116,19 +121,19 @@ Choose your editor below. **No API key needed to start** — upgrade to Pro late
 }
 ```
 
-2. **Restart** Cursor IDE
-3. **Test it** — Look for 🔌 icon in bottom right, then ask:
-   - _"Show me all available AI models"_
-   - _"Recommend an AI model for my chatbot project"_
+2. Restart Cursor IDE
+3. Test it — Look for the connection icon in the bottom right, then ask:
+   - "Show me all available AI models"
+   - "Recommend an AI model for my chatbot project"
 
-✅ **You're done!** You get **3 free recommendations/day**.
+You're done. You get 3 free recommendations/day.
 
 #### Option 2: Pro (Unlimited)
 
 **[Upgrade to Pro →](https://architectgbt.com/pricing)** then:
 
-1. **Get your API key** from [ArchitectGBT Dashboard](https://architectgbt.com/dashboard/settings)
-2. **Edit** `.cursor/mcp.json`:
+1. Get your API key from [ArchitectGBT Dashboard](https://architectgbt.com/dashboard/settings)
+2. Edit `.cursor/mcp.json`:
 
 ```json
 {
@@ -144,10 +149,10 @@ Choose your editor below. **No API key needed to start** — upgrade to Pro late
 }
 ```
 
-3. **Replace** `agbt_your_key_here` with your actual API key
-4. **Restart** Cursor IDE
+3. Replace `agbt_your_key_here` with your actual API key
+4. Restart Cursor IDE
 
-✅ **Unlimited recommendations + code templates unlocked!**
+Unlimited recommendations + code templates unlocked.
 
 ---
 
@@ -155,12 +160,12 @@ Choose your editor below. **No API key needed to start** — upgrade to Pro late
 
 #### Option 1: Free (No API Key)
 
-1. **Open config file:**
+1. Open config file:
    - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
    - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
    - **Linux:** `~/.config/Claude/claude_desktop_config.json`
 
-2. **Add this configuration:**
+2. Add this configuration:
 
 ```json
 {
@@ -173,19 +178,19 @@ Choose your editor below. **No API key needed to start** — upgrade to Pro late
 }
 ```
 
-3. **Restart** Claude Desktop
-4. **Test it** — Ask Claude:
-   - _"List all AI models from Anthropic"_
-   - _"Recommend a model for document analysis"_
+3. Restart Claude Desktop
+4. Test it — Ask Claude:
+   - "List all AI models from Anthropic"
+   - "Recommend a model for document analysis"
 
-✅ **You're set!** You get **3 free recommendations/day**.
+You're set. You get 3 free recommendations/day.
 
 #### Option 2: Pro (Unlimited)
 
 **[Upgrade to Pro →](https://architectgbt.com/pricing)** then:
 
-1. **Get your API key** from [ArchitectGBT Dashboard](https://architectgbt.com/dashboard/settings)
-2. **Edit the config file** (same locations as above):
+1. Get your API key from [ArchitectGBT Dashboard](https://architectgbt.com/dashboard/settings)
+2. Edit the config file (same locations as above):
 
 ```json
 {
@@ -201,126 +206,19 @@ Choose your editor below. **No API key needed to start** — upgrade to Pro late
 }
 ```
 
-3. **Replace** `agbt_your_key_here` with your actual API key
-4. **Restart** Claude Desktop
+3. Replace `agbt_your_key_here` with your actual API key
+4. Restart Claude Desktop
 
-✅ **Unlimited access activated!**
+Unlimited access activated.
 
 ---
 
 ### Other Editors
 
----
+#### VS Code (with Continue extension)
 
-### 1. 📊 `list_models` — Browse Models (Always Free!)
-
-**What it does:** Shows all 50+ AI models with pricing, specs, and capabilities.
-
-**Rate limit:** ✅ **Unlimited** (no restrictions!)
-
-**Example prompts:**
-```
-✅ "Show me all AI models"
-✅ "List models from Anthropic with pricing"
-✅ "What OpenAI models are available?"
-✅ "Compare Claude models"
-```
-
-**Response includes:**
-- Model name and provider
-- Pricing per 1M tokens (input/output)
-- Context window size
-- Speed ranking
-- Key capabilities
-
-**💡 Tip:** Start here to explore options before asking for a recommendation!
-
----
-
-### 2. 🎯 `get_ai_recommendation` — AI-Powered Suggestions
-
-**What it does:** Analyzes your project and recommends the best model with detailed reasoning.
-
-**Rate limit:** 
-- **Free:** 3 per day (resets at midnight UTC)
-- **Pro:** ✅ Unlimited
-
-**Example prompts:**
-```
-✅ "Recommend an AI model for a customer support chatbot handling 10k requests/day"
-✅ "What's the best model for analyzing legal documents with 50k tokens?"
-✅ "I need a fast, cheap model for sentiment analysis — recommend one"
-✅ "Find me a model with low latency and medium budget for a translation app"
-```
-
-**Response includes:**
-- Top recommended model with match score
-- Detailed reasoning (why it's perfect for your use case)
-- Pros and cons
-- Estimated daily cost
-- Alternative suggestions
-- Upgrade prompt if you hit the free limit
-
-**⚠️ Important:** This is the **only rate-limited tool**. Browse models (`list_models`) unlimited!
-
-**Hit your limit?** 
-1. ⏰ Wait for daily reset (midnight UTC)
-2. 🚀 **[Upgrade to Pro →](https://architectgbt.com/pricing)** for unlimited access
-
----
-
-### 3. 💻 `get_code_template` — Production Code (Pro Only 🔒)
-
-**What it does:** Returns production-ready integration code for specific AI models.
-
-**Rate limit:** 
-- **Free:** ❌ Not available
-- **Pro:** ✅ Unlimited
-
-**Example prompts:**
-```
-✅ "Give me TypeScript code to integrate Claude"
-✅ "Show me how to use GPT-4 in Python"
-✅ "Get me a Gemini integration template"
-✅ "I need example code for calling Anthropic's API with streaming"
-```
-
-**Response includes:**
-- Installation commands
-- Environment variable setup
-- Complete working code
-- Usage examples with error handling
-
-**Not a Pro user?** Free users see an upgrade prompt with pricing.
-
-**[Get Pro access →](https://architectgbt.com/pricing)** to unlock code templates!
-
----
-
-### 🎓 Prompting Tips
-
-| Do ✅ | Don't ❌ |
-|-------|----------|
-| Be specific about your use case | Ask generic "which is best?" questions |
-| Mention budget, volume, latency needs | Only ask for model names without context |
-| Start with `list_models` to explore | Waste recommendations on exploratory questions |
-| Use `get_ai_recommendation` for decisions | Ask for code without mentioning language |
-
-**Pro Tip:** You can say _"use the list_models tool"_ or _"call get_ai_recommendation"_ to explicitly trigger a specific tool!
-
----
-
-## 💎 Pricing & Limits
-
-| Tier | Recommendations | Code Templates | Cost Calculator | API Keys | Price |
-|------|-----------------|----------------|-----------------|----------|-------|
-| **Free** | 3/day (MCP) + 10/month (web) | ❌ | ❌ | ❌ | $0 |
-| **Pro** | ✅ Unlimited | ✅ Unlimited | ✅ | ✅ Up to 5 | **$15/mo** |
-
-### Free Tier
-
-1. **Install** [Continue extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
-2. **Add to settings:**
+1. Install [Continue extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+2. Add to settings:
 
 ```json
 {
@@ -333,7 +231,7 @@ Choose your editor below. **No API key needed to start** — upgrade to Pro late
 }
 ```
 
-**For Pro:** Add `"env": { "ARCHITECTGBT_API_KEY": "agbt_your_key" }` after **[upgrading](https://architectgbt.com/pricing)**.
+**For Pro:** Add `"env": { "ARCHITECTGBT_API_KEY": "agbt_your_key" }` after [upgrading](https://architectgbt.com/pricing).
 
 #### Zed Editor
 
@@ -350,32 +248,30 @@ Add to `~/.config/zed/settings.json`:
 }
 ```
 
-**For Pro:** Add `"env": { "ARCHITECTGBT_API_KEY": "agbt_your_key" }` after **[upgrading](https://architectgbt.com/pricing)**.
+**For Pro:** Add `"env": { "ARCHITECTGBT_API_KEY": "agbt_your_key" }` after [upgrading](https://architectgbt.com/pricing).
 
 #### Other MCP-Compatible Editors
 
-Check [ArchitectGBT Documentation](https://architectgbt.com/docs/mcp-integration) for setup instructions for your editor.
+Check [ArchitectGBT Documentation](https://architectgbt.com/docs/mcp-integration) for setup instructions.
 
 ---
 
-## 💬 Usage Guide
+## Usage Guide
 
-ArchitectGBT provides **3 MCP tools** that work directly in your IDE. Here's how to use them:
+ArchitectGBT provides 3 MCP tools that work directly in your IDE:
 
----
+### 1. `list_models` — Browse Models (Always Free)
 
-### 1. 📊 `list_models` — Browse Models (Always Free!)
+Shows all 50+ AI models with pricing, specs, and capabilities.
 
-**What it does:** Shows all 50+ AI models with pricing, specs, and capabilities.
-
-**Rate limit:** ✅ **Unlimited** (no restrictions!)
+**Rate limit:** Unlimited (no restrictions)
 
 **Example prompts:**
 ```
-✅ "Show me all AI models"
-✅ "List models from Anthropic with pricing"
-✅ "What OpenAI models are available?"
-✅ "Compare Claude models"
+"Show me all AI models"
+"List models from Anthropic with pricing"
+"What OpenAI models are available?"
+"Compare Claude models"
 ```
 
 **Response includes:**
@@ -385,24 +281,24 @@ ArchitectGBT provides **3 MCP tools** that work directly in your IDE. Here's how
 - Speed ranking
 - Key capabilities
 
-**💡 Tip:** Start here to explore options before asking for a recommendation!
+**Tip:** Start here to explore options before asking for a recommendation.
 
 ---
 
-### 2. 🎯 `get_ai_recommendation` — AI-Powered Suggestions
+### 2. `get_ai_recommendation` — AI-Powered Suggestions
 
-**What it does:** Analyzes your project and recommends the best model with detailed reasoning.
+Analyzes your project and recommends the best model with detailed reasoning.
 
 **Rate limit:** 
 - **Free:** 3 per day (resets at midnight UTC)
-- **Pro:** ✅ Unlimited
+- **Pro:** Unlimited
 
 **Example prompts:**
 ```
-✅ "Recommend an AI model for a customer support chatbot handling 10k requests/day"
-✅ "What's the best model for analyzing legal documents with 50k tokens?"
-✅ "I need a fast, cheap model for sentiment analysis — recommend one"
-✅ "Find me a model with low latency and medium budget for a translation app"
+"Recommend an AI model for a customer support chatbot handling 10k requests/day"
+"What's the best model for analyzing legal documents with 50k tokens?"
+"I need a fast, cheap model for sentiment analysis — recommend one"
+"Find me a model with low latency and medium budget for a translation app"
 ```
 
 **Response includes:**
@@ -413,28 +309,28 @@ ArchitectGBT provides **3 MCP tools** that work directly in your IDE. Here's how
 - Alternative suggestions
 - Upgrade prompt if you hit the free limit
 
-**⚠️ Important:** This is the **only rate-limited tool**. Browse models (`list_models`) unlimited!
+**Important:** This is the **only rate-limited tool**. Browse models (`list_models`) unlimited.
 
 **Hit your limit?** 
-1. ⏰ Wait for daily reset (midnight UTC)
-2. 🚀 **[Upgrade to Pro →](https://architectgbt.com/pricing)** for unlimited access
+1. Wait for daily reset (midnight UTC)
+2. **[Upgrade to Pro →](https://architectgbt.com/pricing)** for unlimited access
 
 ---
 
-### 3. 💻 `get_code_template` — Production Code (Pro Only 🔒)
+### 3. `get_code_template` — Production Code (Pro Only)
 
-**What it does:** Returns production-ready integration code for specific AI models.
+Returns production-ready integration code for specific AI models.
 
 **Rate limit:** 
-- **Free:** ❌ Not available
-- **Pro:** ✅ Unlimited
+- **Free:** Not available
+- **Pro:** Unlimited
 
 **Example prompts:**
 ```
-✅ "Give me TypeScript code to integrate Claude"
-✅ "Show me how to use GPT-4 in Python"
-✅ "Get me a Gemini integration template"
-✅ "I need example code for calling Anthropic's API with streaming"
+"Give me TypeScript code to integrate Claude"
+"Show me how to use GPT-4 in Python"
+"Get me a Gemini integration template"
+"I need example code for calling Anthropic's API with streaming"
 ```
 
 **Response includes:**
@@ -445,44 +341,44 @@ ArchitectGBT provides **3 MCP tools** that work directly in your IDE. Here's how
 
 **Not a Pro user?** Free users see an upgrade prompt with pricing.
 
-**[Get Pro access →](https://architectgbt.com/pricing)** to unlock code templates!
+**[Get Pro access →](https://architectgbt.com/pricing)** to unlock code templates.
 
 ---
 
-### 🎓 Prompting Tips
+### Prompting Tips
 
-| Do ✅ | Don't ❌ |
+| Do | Don't |
 |-------|----------|
 | Be specific about your use case | Ask generic "which is best?" questions |
 | Mention budget, volume, latency needs | Only ask for model names without context |
 | Start with `list_models` to explore | Waste recommendations on exploratory questions |
 | Use `get_ai_recommendation` for decisions | Ask for code without mentioning language |
 
-**Pro Tip:** You can say _"use the list_models tool"_ or _"call get_ai_recommendation"_ to explicitly trigger a specific tool!
+**Pro Tip:** You can say "use the list_models tool" or "call get_ai_recommendation" to explicitly trigger a specific tool.
 
 ---
 
-## 💎 Pricing & Limits
+## Pricing & Limits
 
 | Tier | Recommendations | Code Templates | Cost Calculator | API Keys | Price |
 |------|-----------------|----------------|-----------------|----------|-------|
-| **Free** | 3/day (MCP) + 10/month (web) | ❌ | ❌ | ❌ | $0 |
-| **Pro** | ✅ Unlimited | ✅ Unlimited | ✅ | ✅ Up to 5 | **$15/mo** |
+| **Free** | 3/day (MCP) + 10/month (web) | No | No | No | $0 |
+| **Pro** | Unlimited | Unlimited | Yes | Up to 5 | **$15/mo** |
 
 ### Free Tier
 
-**Perfect for trying ArchitectGBT:**
-- ✅ **No signup required** — works instantly
-- ✅ **3 AI recommendations/day** via MCP (IP-based rate limit)
-- ✅ **Unlimited model browsing** (`list_models` tool)
-- ✅ **10 recommendations/month** on the web app
-- 📊 **Full model database** access on [architectgbt.com](https://architectgbt.com)
+Perfect for trying ArchitectGBT:
+- No signup required — works instantly
+- 3 AI recommendations/day via MCP (IP-based rate limit)
+- Unlimited model browsing (`list_models` tool)
+- 10 recommendations/month on the web app
+- Full model database access on [architectgbt.com](https://architectgbt.com)
 
 **Limitations:**
-- ❌ No code templates
-- ❌ No cost calculator
-- ❌ No API key access
-- ❌ No priority support
+- No code templates
+- No cost calculator
+- No API key access
+- No priority support
 
 **Best for:** Exploring options, comparing models, trying ArchitectGBT for personal projects.
 
@@ -490,14 +386,14 @@ ArchitectGBT provides **3 MCP tools** that work directly in your IDE. Here's how
 
 ### Pro Tier ($15/month)
 
-**For developers shipping to production:**
-- ✅ **Unlimited AI recommendations** (MCP + web app)
-- ✅ **Production-ready code templates** (TypeScript + Python)
-- ✅ **Cost calculator** with realistic usage estimates
-- ✅ **API key access** (create up to 5 keys)
-- ✅ **Priority email support**
-- ✅ **Advanced filters** and comparison tools
-- 🚀 **Early access** to new features
+For developers shipping to production:
+- Unlimited AI recommendations (MCP + web app)
+- Production-ready code templates (TypeScript + Python)
+- Cost calculator with realistic usage estimates
+- API key access (create up to 5 keys)
+- Priority email support
+- Advanced filters and comparison tools
+- Early access to new features
 
 **Best for:** Professional developers, startups, teams building AI products.
 
@@ -508,10 +404,10 @@ ArchitectGBT provides **3 MCP tools** that work directly in your IDE. Here's how
 ### Enterprise (Custom Pricing)
 
 Need more? We offer:
-- 🏢 **Team collaboration** (shared recommendations, templates)
-- 🔐 **SSO and advanced security**
-- 📞 **Priority support** with SLA
-- 🎓 **Onboarding and training**
+- Team collaboration (shared recommendations, templates)
+- SSO and advanced security
+- Priority support with SLA
+- Onboarding and training
 
 **[Contact Sales →](https://architectgbt.com/contact)**
 
@@ -521,25 +417,23 @@ Need more? We offer:
 
 | Endpoint | Free | Pro |
 |----------|------|-----|
-| `list_models` | ♾️ Unlimited | ♾️ Unlimited |
-| `get_ai_recommendation` (MCP) | 3/day | ♾️ Unlimited |
-| Web app recommendations | 10/month | ♾️ Unlimited |
-| `get_code_template` | ❌ | ♾️ Unlimited |
+| `list_models` | Unlimited | Unlimited |
+| `get_ai_recommendation` (MCP) | 3/day | Unlimited |
+| Web app recommendations | 10/month | Unlimited |
+| `get_code_template` | No | Unlimited |
 
 **Rate limit resets:** Midnight UTC daily
 
 **Hit your limit?**
-1. ⏰ Wait for reset (resets every 24 hours)
-2. 🌐 Use the [web app](https://architectgbt.com) (10 free/month)
-3. 🚀 **[Upgrade to Pro](https://architectgbt.com/pricing)** for unlimited access
+1. Wait for reset (resets every 24 hours)
+2. Use the [web app](https://architectgbt.com) (10 free/month)
+3. **[Upgrade to Pro](https://architectgbt.com/pricing)** for unlimited access
 
 ---
 
-## 🔧 Available Tools
+## Available Tools
 
 This MCP server exposes 3 tools that your IDE's AI assistant can use:
-
----
 
 ### 1. `list_models`
 
@@ -552,7 +446,7 @@ This MCP server exposes 3 tools that your IDE's AI assistant can use:
 **Returns:**
 - List of models with name, provider, pricing (input/output per 1M tokens), context window, speed ranking
 
-**Rate limit:** ✅ **Unlimited** (always free)
+**Rate limit:** Unlimited (always free)
 
 ---
 
@@ -574,7 +468,7 @@ This MCP server exposes 3 tools that your IDE's AI assistant can use:
 
 **Rate limit:**
 - **Free:** 3 per day (resets midnight UTC)
-- **Pro:** ✅ Unlimited
+- **Pro:** Unlimited
 
 ---
 
@@ -593,34 +487,34 @@ This MCP server exposes 3 tools that your IDE's AI assistant can use:
 - Usage examples with error handling
 
 **Rate limit:**
-- **Free:** ❌ Not available (shows upgrade prompt)
-- **Pro:** ✅ Unlimited
+- **Free:** Not available (shows upgrade prompt)
+- **Pro:** Unlimited
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
-### ❌ "Daily Limit Reached"
+### "Daily Limit Reached"
 
 **Problem:** You've used your 3 free recommendations for today.
 
 **Solutions:**
-1. ⏰ **Wait for reset** — Limits reset at midnight UTC (check countdown in response)
-2. 🌐 **Use the web app** — Get 10 more recommendations/month at [architectgbt.com](https://architectgbt.com)
-3. 🚀 **Upgrade to Pro** — Get unlimited access for **$15/month** → [Upgrade here](https://architectgbt.com/pricing)
+1. **Wait for reset** — Limits reset at midnight UTC (check countdown in response)
+2. **Use the web app** — Get 10 more recommendations/month at [architectgbt.com](https://architectgbt.com)
+3. **Upgrade to Pro** — Get unlimited access for $15/month → [Upgrade here](https://architectgbt.com/pricing)
 
 ---
 
-### ❌ "API Key Invalid"
+### "API Key Invalid"
 
 **Problem:** Your API key isn't being accepted.
 
 **Solutions:**
-1. ✅ **Check format** — Keys start with `agbt_` (32 characters total)
-2. ✅ **Verify Pro status** — API keys only work for Pro subscribers → [Check subscription](https://architectgbt.com/dashboard/settings)
-3. ✅ **Regenerate key** — Create a new key at [Settings](https://architectgbt.com/dashboard/settings)
-4. ✅ **Check config** — Ensure key is in `env` section of your MCP config
-5. ✅ **Restart IDE** — Changes require full restart
+1. **Check format** — Keys start with `agbt_` (32 characters total)
+2. **Verify Pro status** — API keys only work for Pro subscribers → [Check subscription](https://architectgbt.com/dashboard/settings)
+3. **Regenerate key** — Create a new key at [Settings](https://architectgbt.com/dashboard/settings)
+4. **Check config** — Ensure key is in `env` section of your MCP config
+5. **Restart IDE** — Changes require full restart
 
 **Example config:**
 ```json
@@ -639,40 +533,40 @@ This MCP server exposes 3 tools that your IDE's AI assistant can use:
 
 ---
 
-### ❌ MCP Server Not Loading
+### MCP Server Not Loading
 
 **Problem:** Tools aren't showing up in your IDE.
 
 **Solutions:**
-1. ✅ **Check Node.js** — Requires Node.js >= 18.0.0 (`node --version`)
-2. ✅ **Verify config** — Check JSON syntax in your MCP config file
-3. ✅ **Restart IDE** — Full restart required after config changes
-4. ✅ **Test manually** — Run `npx -y architectgbt-mcp@latest` in terminal
-5. ✅ **Check network** — Verify you can access https://architectgbt.com/api/models
+1. **Check Node.js** — Requires Node.js >= 18.0.0 (`node --version`)
+2. **Verify config** — Check JSON syntax in your MCP config file
+3. **Restart IDE** — Full restart required after config changes
+4. **Test manually** — Run `npx -y architectgbt-mcp@latest` in terminal
+5. **Check network** — Verify you can access https://architectgbt.com/api/models
 
-**For Cursor users:** Look for 🔌 icon in bottom right corner
+**For Cursor users:** Look for the connection icon in the bottom right corner
 
 ---
 
-### ❌ Models Not Showing
+### Models Not Showing
 
 **Problem:** `list_models` returns empty or errors.
 
 **Solutions:**
-1. ✅ **Check internet** — Test connection to https://architectgbt.com
-2. ✅ **Verify API** — Visit https://architectgbt.com/api/models in browser
-3. ✅ **Update package** — Run with `@latest` tag: `npx -y architectgbt-mcp@latest`
-4. ✅ **Clear cache** — Delete `node_modules/.cache` and retry
+1. **Check internet** — Test connection to https://architectgbt.com
+2. **Verify API** — Visit https://architectgbt.com/api/models in browser
+3. **Update package** — Run with `@latest` tag: `npx -y architectgbt-mcp@latest`
+4. **Clear cache** — Delete `node_modules/.cache` and retry
 
 ---
 
-### ❌ Free Tier Not Working
+### Free Tier Not Working
 
 **Problem:** Getting errors even without API key.
 
 **Solutions:**
-1. ✅ **Remove API key** — Free tier doesn't need `env` section at all
-2. ✅ **Use basic config:**
+1. **Remove API key** — Free tier doesn't need `env` section at all
+2. **Use basic config:**
    ```json
    {
      "mcpServers": {
@@ -683,20 +577,20 @@ This MCP server exposes 3 tools that your IDE's AI assistant can use:
      }
    }
    ```
-3. ✅ **Check IP limit** — Each IP gets 3/day (shared across users on same network)
-4. ✅ **Create free account** — Get 10 more/month on [architectgbt.com](https://architectgbt.com)
+3. **Check IP limit** — Each IP gets 3/day (shared across users on same network)
+4. **Create free account** — Get 10 more/month on [architectgbt.com](https://architectgbt.com)
 
 ---
 
-### 📧 Still Having Issues?
+### Still Having Issues?
 
 - **Email support:** hello@architectgbt.com
 - **Documentation:** [architectgbt.com/docs/mcp-integration](https://architectgbt.com/docs/mcp-integration)
-- **Report bugs:** [GitHub Issues](https://github.com/yourusername/architectgbt-mcp/issues)
+- **Report bugs:** [GitHub Issues](https://github.com/3rdbrain/architectgbt-mcp/issues)
 
 ---
 
-## 🌐 Environment Variables
+## Environment Variables
 
 | Variable | Required | Description |
 |----------|----------|-------------|
@@ -710,55 +604,55 @@ export ARCHITECTGBT_API_KEY="agbt_your_key_here"
 
 ---
 
-## 🔗 Links & Support
+## Links & Support
 
 ### ArchitectGBT Platform
 
-- **🏠 Homepage:** [architectgbt.com](https://architectgbt.com) — Explore 50+ models, compare pricing, get recommendations
-- **📊 Browse Models:** [architectgbt.com/models](https://architectgbt.com/models) — Full database with filters and search
-- **💎 Pricing:** [architectgbt.com/pricing](https://architectgbt.com/pricing) — Upgrade to Pro for unlimited access
-- **🔑 Get API Key:** [architectgbt.com/dashboard/settings](https://architectgbt.com/dashboard/settings) — Manage keys and subscription
-- **📚 Documentation:** [architectgbt.com/docs/mcp-integration](https://architectgbt.com/docs/mcp-integration) — Full MCP setup guide
-- **📧 Blog:** [architectgbt.com/blog](https://architectgbt.com/blog) — Model comparisons, benchmarks, tutorials
+- **Homepage:** [architectgbt.com](https://architectgbt.com) — Explore 50+ models, compare pricing, get recommendations
+- **Browse Models:** [architectgbt.com/models](https://architectgbt.com/models) — Full database with filters and search
+- **Pricing:** [architectgbt.com/pricing](https://architectgbt.com/pricing) — Upgrade to Pro for unlimited access
+- **Get API Key:** [architectgbt.com/dashboard/settings](https://architectgbt.com/dashboard/settings) — Manage keys and subscription
+- **Documentation:** [architectgbt.com/docs/mcp-integration](https://architectgbt.com/docs/mcp-integration) — Full MCP setup guide
+- **Blog:** [architectgbt.com/blog](https://architectgbt.com/blog) — Model comparisons, benchmarks, tutorials
 
 ### NPM Package
 
-- **📦 Package:** [npmjs.com/package/architectgbt-mcp](https://www.npmjs.com/package/architectgbt-mcp)
-- **🔖 Version:** 0.4.0
-- **📄 License:** MIT
+- **Package:** [npmjs.com/package/architectgbt-mcp](https://www.npmjs.com/package/architectgbt-mcp)
+- **Version:** 0.4.0
+- **License:** MIT
 
 ### Support Channels
 
-- **📧 Email:** hello@architectgbt.com
-- **🐛 Bug Reports:** [GitHub Issues](https://github.com/yourusername/architectgbt-mcp/issues)
-- **💬 Feature Requests:** [GitHub Discussions](https://github.com/yourusername/architectgbt-mcp/discussions)
-- **🐦 Twitter/X:** [@architectgbt](https://twitter.com/architectgbt) — Updates and announcements
+- **Email:** hello@architectgbt.com
+- **Bug Reports:** [GitHub Issues](https://github.com/3rdbrain/architectgbt-mcp/issues)
+- **Feature Requests:** [GitHub Discussions](https://github.com/3rdbrain/architectgbt-mcp/discussions)
+- **Twitter/X:** [@architectgbt](https://twitter.com/architectgbt) — Updates and announcements
 
 ---
 
-## 🚀 Why Use ArchitectGBT?
+## Why Use ArchitectGBT?
 
-**Save hours of research** — We track 50+ models from 5 providers so you don't have to.
+Save hours of research — We track 50+ models from 5 providers so you don't have to.
 
-**Make better decisions** — AI-powered recommendations based on your actual requirements, not marketing hype.
+Make better decisions — AI-powered recommendations based on your actual requirements, not marketing hype.
 
-**Ship faster** — Production-ready code templates eliminate boilerplate and integration headaches.
+Ship faster — Production-ready code templates eliminate boilerplate and integration headaches.
 
-**Optimize costs** — Realistic cost estimates prevent budget surprises in production.
+Optimize costs — Realistic cost estimates prevent budget surprises in production.
 
-**Stay updated** — We monitor pricing changes, new releases, and deprecations across all providers.
+Stay updated — We monitor pricing changes, new releases, and deprecations across all providers.
 
-👉 **[Start exploring models now →](https://architectgbt.com)**
+**[Start exploring models now →](https://architectgbt.com)**
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-This MCP server is part of the [ArchitectGBT](https://architectgbt.com) platform. We welcome contributions!
+This MCP server is part of the [ArchitectGBT](https://architectgbt.com) platform. We welcome contributions.
 
 **Development Setup:**
 ```bash
-git clone https://github.com/yourusername/architectgbt-mcp.git
+git clone https://github.com/3rdbrain/architectgbt-mcp.git
 cd architectgbt-mcp
 npm install
 npm run build
@@ -772,13 +666,13 @@ npm run dev
 
 ---
 
-## 📜 License
+## License
 
 MIT © ArchitectGBT
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built with:
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io) by Anthropic
@@ -789,7 +683,7 @@ Built with:
 
 <div align="center">
 
-**Built with ❤️ for developers who ship fast**
+**Built for developers who ship fast**
 
 [Try Free](https://architectgbt.com) · [Get Pro](https://architectgbt.com/pricing) · [Read Docs](https://architectgbt.com/docs/mcp-integration)
 
