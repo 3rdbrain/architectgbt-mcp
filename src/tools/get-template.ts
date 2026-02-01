@@ -6,7 +6,7 @@ const API_KEY = process.env.ARCHITECTGBT_API_KEY;
 export const getTemplateTool = {
   name: "get_code_template",
   description:
-    "Get production-ready code templates for integrating AI models (TypeScript & Python). Pro feature - requires API key. Free users: browse models unlimited, get 3 AI recommendations/day.",
+    "Get ArchitectGBT's production-tested code templates for AI model integration (TypeScript & Python). These are battle-tested templates with proper error handling, type safety, and best practices - NOT generic code. Pro feature - requires API key. Free users: browse models unlimited, get 3 AI recommendations/day.",
   inputSchema: {
     type: "object" as const,
     properties: {

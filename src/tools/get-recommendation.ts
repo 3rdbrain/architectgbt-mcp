@@ -218,8 +218,78 @@ function formatRecommendation(data: any): string {
     result += `\n📊 Analysis Summary:\n${data.analysis_summary}\n\n`;
   }
 
+  // Add setup instructions for the recommended model
+  result += `${"─".repeat(70)}\n`;
+  result += `\n🚀 READY TO USE THIS MODEL?\n\n`;
+  result += getModelSetupInstructions(top);
+
   result += `${"=".repeat(70)}\n`;
   result += `💎 Powered by ArchitectGBT • https://architectgbt.com`;
 
   return result;
+}
+
+/**
+ * Generate IDE-specific setup instructions for the recommended model
+ */
+function getModelSetupInstructions(model: any): string {
+  const modelName = model.model_name || model.name || '';
+  const provider = model.provider?.toLowerCase() || '';
+  
+  let instructions = '';
+
+  // Determine the provider and setup steps
+  if (provider.includes('anthropic') || modelName.toLowerCase().includes('claude')) {
+    instructions += `✨ Claude Desktop Setup:\n`;
+    instructions += `1. Open Claude Desktop\n`;
+    instructions += `2. Click Settings → Model → Select "${modelName}"\n`;
+    instructions += `3. Enter your Anthropic API key if prompted\n`;
+    instructions += `4. Start chatting!\n\n`;
+    instructions += `🔗 Get API key: https://console.anthropic.com/settings/keys\n`;
+    instructions += `📚 Docs: https://docs.anthropic.com/claude/docs/models-overview\n\n`;
+    
+  } else if (provider.includes('openai') || modelName.toLowerCase().includes('gpt')) {
+    instructions += `✨ Cursor/Claude Desktop Setup:\n`;
+    instructions += `1. Open your IDE settings\n`;
+    instructions += `2. Navigate to AI Model settings\n`;
+    instructions += `3. Add OpenAI API key\n`;
+    instructions += `4. Select "${modelName}" from the model dropdown\n\n`;
+    instructions += `🔗 Get API key: https://platform.openai.com/api-keys\n`;
+    instructions += `📚 Docs: https://platform.openai.com/docs/models\n\n`;
+    
+  } else if (provider.includes('google') || modelName.toLowerCase().includes('gemini')) {
+    instructions += `✨ IDE Setup for Gemini:\n`;
+    instructions += `1. Get Google AI API key from Google AI Studio\n`;
+    instructions += `2. Configure in your IDE's model settings\n`;
+    instructions += `3. Select "${modelName}"\n\n`;
+    instructions += `🔗 Get API key: https://aistudio.google.com/app/apikey\n`;
+    instructions += `📚 Docs: https://ai.google.dev/docs\n\n`;
+    
+  } else {
+    // Generic instructions for other providers
+    instructions += `✨ Setup Instructions:\n`;
+    instructions += `1. Visit ${model.provider || 'the provider'}'s website\n`;
+    instructions += `2. Create an account and get an API key\n`;
+    instructions += `3. Configure the API key in your IDE\n`;
+    instructions += `4. Select "${modelName}" from available models\n\n`;
+  }
+
+  // Add common next steps
+  instructions += `📋 Next Steps:\n`;
+  instructions += `• Test with a small prompt first\n`;
+  instructions += `• Monitor your API usage and costs\n`;
+  instructions += `• Check rate limits for your tier\n`;
+  
+  // Add code template option for Pro users
+  if (API_KEY) {
+    instructions += `\n💡 Want production code?\n`;
+    instructions += `Ask me: "Can you give me the code template for ${modelName}?"\n`;
+  } else {
+    instructions += `\n💡 Want production-ready code templates?\n`;
+    instructions += `Get unlimited access at https://architectgbt.com/pricing\n`;
+  }
+
+  instructions += `\n`;
+  
+  return instructions;
 }
